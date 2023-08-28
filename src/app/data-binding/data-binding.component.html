@@ -1,0 +1,46 @@
+<p>Hi This is Data-Binding Component</p>
+<input type="text" class="form-control" (input)="updateServerName($event)">
+<p>{{serverName}}</p>
+<button class ="btn btn-primary" [disabled]="!allowAdd" (click)="onCreateServer()">Add New Server</button>
+<p [innerHTML]="allowAdd"></p>
+<p>{{serverCreationStatus}}</p>
+<div> {{'Given'}} Server Id={{Server_Id}}</div>
+<div> Given Server Status={{getStatus()}}</div>
+<div> Given Server Allowed Ports= {{PortsAllowed}}</div>
+
+<!-- using Directive ng-module -->
+<!-- Two way Binding using ngModel if we change the server Nmae input data will also Change on click of clear-->
+<input class="form-control  mb-2 mr-sm-2" type="text"  [(ngModel)]="recordCreated">
+<p>{{recordCreated}}</p>
+<button class ="btn btn-primary"  (click)="onClickCreateRecord()">Add New Record</button>
+<button class ="btn btn-primary"  (click)="onClickClearRecord()">Clear Record</button>
+
+<div>
+AssignMent2-Data Binding
+
+<br>
+NG-IF
+<br>
+<input class="form-control  mb-2 mr-sm-2" type="email"  [(ngModel)]="emailData" (focus)="showEmailCondiion()">
+<!-- <p>{{emailData}}</p> -->
+<!-- using built in If Directive -->
+
+<p  *ngIf="showEmailCondiion(); else noValidEmail" [ngStyle]="{backgroundColor:getColorWhenValid(),width:'30%'}" [ngClass]="{testClass_1: showEmailCondiion()===true}"> Email Provided is : {{emailData}}</p>
+<!-- <p  *ngIf="!showEmail"> Please Provide Valid Email :{{emailData}}</p> -->
+<!-- to call structural directives we use * -->
+<ng-template #noValidEmail>
+    <p [ngStyle]="{backgroundColor:'red' ,width:'30%'}"> Please Provide Valid Email :{{emailData}}</p> 
+</ng-template>
+</div>
+<div>
+<button class ="btn btn-primary" [disabled]="enableButton()" (click)="onClickEmail()">Clear Email</button>
+</div>
+
+<br>
+<div>
+NGFOR
+<br>
+<input type="number" [(ngModel)]="newPort">
+<button class ="btn btn-primary" (click)="addPorts()">Add Ports</button>
+<p *ngFor="let port of PortsAllowed; let indexEach = index" [ngStyle]="{color:indexEach %2==0?'green':'red'}"> Ports Allowed : {{PortsAllowed}}</p>
+</div>

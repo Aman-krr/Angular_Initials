@@ -1,0 +1,9 @@
+input[type='email']{
+    width:30%;
+}
+input[type='text']{
+    width:50%;
+}
+.testClass_1{
+    color:white;
+}
